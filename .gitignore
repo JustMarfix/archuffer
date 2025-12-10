@@ -2,3 +2,7 @@
 .idea
 *.ar
 *.zip
+*.build
+*.dist
+*.onefile-build
+build

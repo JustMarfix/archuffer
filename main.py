@@ -1,13 +1,14 @@
 import argparse
 import os
 import struct
+import stat as _stat
 
 from typing import List, Tuple
 from archiver import Archiver
 
 
 MAGIC = b'ARH1'
-VERSION = 1
+VERSION = 2
 
 
 def get_parser():
@@ -107,6 +108,10 @@ def create_archive(targets: List[str], output_path: str) -> None:
       - Path length: uint32
       - Path (utf-8 bytes)
       - Type: uint8 (0=file, 1=dir)
+      - Metadata (since container VERSION >= 2):
+          - mode: uint32 (POSIX permission bits, see stat.S_IMODE)
+          - uid: uint32 (0xFFFFFFFF if unknown)
+          - gid: uint32 (0xFFFFFFFF if unknown)
       - If file:
           - Compressed size: uint32
           - Compressed data bytes (produced by Archiver.compress)
@@ -130,6 +135,13 @@ def create_archive(targets: List[str], output_path: str) -> None:
             out.write(struct.pack('<I', len(arc_path_bytes)))
             out.write(arc_path_bytes)
             out.write(struct.pack('<B', 1 if is_dir else 0))
+            st = os.stat(fs_path, follow_symlinks=False)
+            mode = _stat.S_IMODE(st.st_mode)
+            uid = getattr(st, 'st_uid', None)
+            gid = getattr(st, 'st_gid', None)
+            uid_val = 0xFFFFFFFF if uid is None else int(uid) & 0xFFFFFFFF
+            gid_val = 0xFFFFFFFF if gid is None else int(gid) & 0xFFFFFFFF
+            out.write(struct.pack('<III', mode, uid_val, gid_val))
             if not is_dir:
                 with open(fs_path, 'rb') as f:
                     data = f.read()
@@ -156,7 +168,7 @@ def extract_archive(archive_path: str, dest_dir: str) -> None:
         if magic != MAGIC:
             raise ValueError("Invalid archive format (bad magic)")
         ver = struct.unpack('<B', f.read(1))[0]
-        if ver != VERSION:
+        if ver not in (1, 2):
             raise ValueError(f"Unsupported archive version: {ver}")
         count = struct.unpack('<I', f.read(4))[0]
 
@@ -165,16 +177,45 @@ def extract_archive(archive_path: str, dest_dir: str) -> None:
             pbytes = f.read(plen)
             arc_path = pbytes.decode('utf-8')
             typ = struct.unpack('<B', f.read(1))[0]
+            if ver >= 2:
+                mode, uid_val, gid_val = struct.unpack('<III', f.read(12))
+            else:
+                mode, uid_val, gid_val = (0o644 if typ == 0 else 0o755, 0xFFFFFFFF, 0xFFFFFFFF)
             full_path = _safe_join(dest_dir, arc_path)
             if typ == 1:
-                os.makedirs(full_path, exist_ok=True)
+                try:
+                    os.makedirs(full_path, exist_ok=True)
+                    os.chmod(full_path, mode)
+                except PermissionError:
+                    print(f'[!] Permission error happened while writing to a {arc_path}')
+                if hasattr(os, 'chown'):
+                    uid_arg = -1 if uid_val == 0xFFFFFFFF else uid_val
+                    gid_arg = -1 if gid_val == 0xFFFFFFFF else gid_val
+                    if uid_arg != -1 or gid_arg != -1:
+                        try:
+                            os.chown(full_path, uid_arg, gid_arg)
+                        except PermissionError:
+                            print(f'[!] Permission error happened while trying to chown a {arc_path}')
             else:
                 csize = struct.unpack('<I', f.read(4))[0]
                 comp = f.read(csize)
                 data = Archiver().decompress(comp)
                 os.makedirs(os.path.dirname(full_path), exist_ok=True)
-                with open(full_path, 'wb') as out:
-                    out.write(data)
+                try:
+                    with open(full_path, 'wb') as out:
+                        out.write(data)
+                    os.chmod(full_path, mode)
+                except PermissionError:
+                    print(f'[!] Permission error happened while writing to a {arc_path}')
+                    continue
+                if hasattr(os, 'chown'):
+                    uid_arg = -1 if uid_val == 0xFFFFFFFF else uid_val
+                    gid_arg = -1 if gid_val == 0xFFFFFFFF else gid_val
+                    if uid_arg != -1 or gid_arg != -1:
+                        try:
+                            os.chown(full_path, uid_arg, gid_arg)
+                        except PermissionError:
+                            print(f'[!] Permission error happened while trying to chown a {arc_path}')
 
 
 def main():
