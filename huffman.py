@@ -6,7 +6,8 @@ from bitops import BitWriter, BitReader
 class HuffmanNode:
     """Node for a standard binary Huffman tree.
 
-    :ivar symbol: The symbol (e.g., literal byte or length code) stored at a leaf; ``None`` for internal nodes.
+    :ivar symbol: The symbol (e.g., literal byte or length code)
+    stored at a leaf; ``None`` for internal nodes.
     :type symbol: int | None
     :ivar freq: Frequency (weight) of the subtree rooted at this node.
     :type freq: int
@@ -19,7 +20,8 @@ class HuffmanNode:
     def __init__(self, symbol=None, freq=0, left=None, right=None):
         """Create a Huffman node.
 
-        :param symbol: Symbol value for leaf nodes; ``None`` for internal nodes.
+        :param symbol: Symbol value for leaf nodes;
+        ``None`` for internal nodes.
         :type symbol: int | None
         :param int freq: Frequency (weight) associated with this node.
         :param left: Left child node, if any.
@@ -54,7 +56,8 @@ class CanonicalHuffman:
     :type code_lengths: Dict[int, int]
     :ivar codes: Mapping from symbol to a tuple ``(code, length)``.
     :type codes: Dict[int, Tuple[int, int]]
-    :ivar decode_table: Optional mapping reserved for decoding structures (not all methods use it).
+    :ivar decode_table: Optional mapping reserved for
+    decoding structures (not all methods use it).
     :type decode_table: Dict[int, int]
     :ivar symbols: Sorted list of symbols with defined codes.
     :type symbols: List[int]
@@ -93,13 +96,18 @@ class CanonicalHuffman:
             self._generate_canonical_codes()
             return
 
-        heap = [HuffmanNode(symbol=sym, freq=freq) for sym, freq in frequencies.items()]
+        heap = [
+            HuffmanNode(symbol=sym, freq=freq)
+            for sym, freq in frequencies.items()
+        ]
         heapq.heapify(heap)
 
         while len(heap) > 1:
             left = heapq.heappop(heap)
             right = heapq.heappop(heap)
-            merged = HuffmanNode(freq=left.freq + right.freq, left=left, right=right)
+            merged = HuffmanNode(
+                freq=left.freq + right.freq, left=left, right=right
+            )
             heapq.heappush(heap, merged)
 
         root = heap[0]
@@ -140,9 +148,11 @@ class CanonicalHuffman:
         code = 0
         prev_length = 0
 
-        for symbol in sorted(self.symbols, key=lambda s: (self.code_lengths[s], s)):
+        for symbol in sorted(
+            self.symbols, key=lambda s: (self.code_lengths[s], s)
+        ):
             length = self.code_lengths[symbol]
-            code <<= (length - prev_length)
+            code <<= length - prev_length
             self.codes[symbol] = (code, length)
             code += 1
             prev_length = length
@@ -152,7 +162,8 @@ class CanonicalHuffman:
 
         :param symbol: Symbol to encode.
         :type symbol: int
-        :returns: Tuple ``(code, length)``. If ``symbol`` is unknown, returns ``(0, 1)``.
+        :returns: Tuple ``(code, length)``.
+        If ``symbol`` is unknown, returns ``(0, 1)``.
         :rtype: Tuple[int, int]
         """
         return self.codes.get(symbol, (0, 1))
@@ -178,7 +189,8 @@ class CanonicalHuffman:
 
         :param data: Serialized metadata produced by :meth:`save_metadata`.
         :type data: bytes
-        :returns: Number of bytes consumed from ``data`` while reading metadata.
+        :returns: Number of bytes consumed from ``data``
+        while reading metadata.
         :rtype: int
         :raises EOFError: If the metadata is truncated.
         """

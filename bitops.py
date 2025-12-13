@@ -8,7 +8,8 @@ class BitWriter:
     :type buffer: bytearray
     :ivar bit_buffer: 8-bit scratch register for accumulating pending bits.
     :type bit_buffer: int
-    :ivar bit_count: Number of valid bits currently stored in ``bit_buffer`` (0-7).
+    :ivar bit_count: Number of valid bits currently stored
+    in ``bit_buffer`` (0-7).
     :type bit_count: int
     """
 
@@ -52,7 +53,7 @@ class BitWriter:
         :rtype: None
         """
         if self.bit_count > 0:
-            self.bit_buffer <<= (8 - self.bit_count)
+            self.bit_buffer <<= 8 - self.bit_count
             self.buffer.append(self.bit_buffer)
             self.bit_buffer = 0
             self.bit_count = 0
@@ -68,7 +69,7 @@ class BitWriter:
         :rtype: bytes
         """
         if self.bit_count > 0:
-            self.bit_buffer <<= (8 - self.bit_count)
+            self.bit_buffer <<= 8 - self.bit_count
             self.buffer.append(self.bit_buffer)
             self.bit_buffer = 0
             self.bit_count = 0
@@ -112,7 +113,8 @@ class BitReader:
         :type nbits: int
         :returns: The integer value composed of the next ``nbits`` bits.
         :rtype: int
-        :raises EOFError: If the end of data is reached before reading ``nbits``.
+        :raises EOFError: If the end of data is reached
+        before reading ``nbits``.
         """
         result = 0
         for _ in range(nbits):
@@ -122,7 +124,9 @@ class BitReader:
                 self.bit_buffer = self.data[self.pos]
                 self.pos += 1
                 self.bit_count = 8
-            result = (result << 1) | ((self.bit_buffer >> (self.bit_count - 1)) & 1)
+            result = (result << 1) | (
+                (self.bit_buffer >> (self.bit_count - 1)) & 1
+            )
             self.bit_count -= 1
         return result
 
@@ -133,11 +137,12 @@ class BitReader:
 
         :param nbytes: Number of bytes to read.
         :type nbytes: int
-        :returns: The next ``nbytes`` bytes (may be shorter only if source is shorter).
+        :returns: The next ``nbytes`` bytes
+        (may be shorter only if source is shorter).
         :rtype: bytes
         """
         if self.bit_count > 0:
             self.bit_count = 0
-        result = self.data[self.pos:self.pos + nbytes]
+        result = self.data[self.pos: self.pos + nbytes]
         self.pos += nbytes
         return result
