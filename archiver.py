@@ -1,5 +1,5 @@
 import struct
-from typing import Dict
+from typing import Dict, Optional, Callable
 
 from bitops import BitWriter, BitReader
 from huffman import CanonicalHuffman
@@ -28,18 +28,28 @@ class Archiver:
         self.lz77 = LZ77Compressor()
         self.huffman = CanonicalHuffman()
 
-    def compress(self, data: bytes) -> bytes:
+    def compress(
+        self,
+        data: bytes,
+        on_progress: Optional[Callable[[int, int], None]] = None,
+    ) -> bytes:
         """Compress raw ``data`` using LZ77 + Huffman coding.
 
         :param data: Input bytes to compress.
         :type data: bytes
-        :returns: Compressed byte stream. For empty input returns header with size 0.
+        :param on_progress: Optional callback ``on_progress(done, total)`` to
+                            report per-file progress based on input bytes
+                            processed. It is called with values in range
+                            ``0..len(data)``.
+        :type on_progress: Optional[Callable[[int, int], None]]
+        :returns: Compressed byte stream.
+        For empty input returns header with size 0.
         :rtype: bytes
         """
         if not data:
-            return struct.pack('<BI', self.VERSION, 0)
+            return struct.pack("<BI", self.VERSION, 0)
 
-        tokens, freq = self.lz77.compress(data)
+        tokens, freq = self.lz77.compress(data, on_progress=on_progress)
 
         self.huffman.build_from_frequencies(freq)
 
@@ -62,17 +72,32 @@ class Archiver:
                 output.write_bits(code, code_len)
                 output.write_bits(distance - 1, 15)
 
+        if on_progress is not None:
+            try:
+                on_progress(len(data), len(data))
+            except Exception:
+                pass
+
         return output.flush()
 
-    def decompress(self, data: bytes) -> bytes:
+    def decompress(
+        self,
+        data: bytes,
+        on_progress: Optional[Callable[[int, int], None]] = None,
+    ) -> bytes:
         """Decompress data produced by ``compress``.
 
         :param data: Compressed byte stream.
         :type data: bytes
+        :param on_progress: Optional callback ``on_progress(done, total)`` to
+                            report per-file progress of recovered bytes.
+        :type on_progress: Optional[Callable[[int, int], None]]
         :returns: Original uncompressed bytes.
         :rtype: bytes
-        :raises ValueError: If the version is unsupported or if an invalid Huffman code is encountered.
-        :raises EOFError: If the input data ends unexpectedly while reading bits.
+        :raises ValueError: If the version is unsupported or
+        if an invalid Huffman code is encountered.
+        :raises EOFError: If the input data ends unexpectedly while
+        reading bits.
         """
         reader = BitReader(data)
 
@@ -82,7 +107,7 @@ class Archiver:
 
         orig_size = reader.read_bits(32)
         if orig_size == 0:
-            return b''
+            return b""
 
         metadata_len = reader.read_bits(16)
         metadata = reader.read_bytes(metadata_len)
@@ -104,6 +129,12 @@ class Archiver:
                 distance = reader.read_bits(15) + 1
                 tokens.append((distance, length, -1))
                 output_len += length
+
+            if on_progress is not None:
+                try:
+                    on_progress(min(output_len, orig_size), orig_size)
+                except Exception:
+                    pass
 
         return self.lz77.decompress(tokens)
 
