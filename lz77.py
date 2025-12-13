@@ -1,11 +1,12 @@
 from collections import defaultdict
-from typing import Tuple, List, Counter, Dict
+from typing import Tuple, List, Counter, Dict, Optional, Callable
 
 
 class LZ77Compressor:
     """Fast LZ77 compression with hash-based matching.
 
-    :ivar MIN_MATCH: Minimum match length eligible for a (distance,length) token.
+    :ivar MIN_MATCH: Minimum match length
+    eligible for a (distance,length) token.
     :type MIN_MATCH: int
     :ivar MAX_MATCH: Maximum match length considered.
     :type MAX_MATCH: int
@@ -43,7 +44,9 @@ class LZ77Compressor:
         """
         if pos + 3 > len(data):
             return 0
-        return ((data[pos] << 16) | (data[pos + 1] << 8) | data[pos + 2]) & 0xFFFFFF
+        return (
+            (data[pos] << 16) | (data[pos + 1] << 8) | data[pos + 2]
+        ) & 0xFFFFFF
 
     def _find_best_match(self, data: bytes, pos: int) -> Tuple[int, int]:
         """Find the best (distance, length) match starting at ``pos``.
@@ -75,11 +78,14 @@ class LZ77Compressor:
             if prev_pos >= pos:
                 continue
 
-            if data[prev_pos:prev_pos + 3] != data[pos:pos + 3]:
+            if data[prev_pos: prev_pos + 3] != data[pos: pos + 3]:
                 continue
 
             length = 3
-            while length < max_len and data[prev_pos + length] == data[pos + length]:
+            while (
+                length < max_len
+                and data[prev_pos + length] == data[pos + length]
+            ):
                 length += 1
 
             if length > best_len:
@@ -94,7 +100,11 @@ class LZ77Compressor:
 
         return best_dist, best_len if best_len >= self.MIN_MATCH else 0
 
-    def compress(self, data: bytes) -> Tuple[List[Tuple[int, int, int]], Counter]:
+    def compress(
+        self,
+        data: bytes,
+        on_progress: Optional[Callable[[int, int], None]] = None,
+    ) -> Tuple[List[Tuple[int, int, int]], Counter]:
         """Compress raw data into LZ77 tokens and symbol frequencies.
 
         Tokens are either literals or matches:
@@ -103,14 +113,19 @@ class LZ77Compressor:
 
         :param data: Uncompressed input bytes.
         :type data: bytes
-        :returns: A pair ``(tokens, frequencies)`` where ``tokens`` is a list of
-                  triples and ``frequencies`` is a Counter used for Huffman coding.
+        :param on_progress: Optional callback ``on_progress(pos, total)``
+        invoked periodically with the current processed position
+        and total input size.
+        :type on_progress: Optional[Callable[[int, int], None]]
+        :returns: A pair ``(tokens, frequencies)`` where ``tokens`` is a list
+        of triples and ``frequencies`` is a Counter used for Huffman coding.
         :rtype: Tuple[List[Tuple[int, int, int]], Counter]
         """
         self.hash_table = defaultdict(list)
         tokens = []
         freq_counter = Counter()
         pos = 0
+        total = len(data)
 
         while pos < len(data):
             distance, length = self._find_best_match(data, pos)
@@ -124,6 +139,9 @@ class LZ77Compressor:
                 tokens.append((0, 0, byte_val))
                 freq_counter[byte_val] += 1
                 pos += 1
+
+            if on_progress is not None:
+                on_progress(pos, total)
 
         return tokens, freq_counter
 
@@ -144,11 +162,13 @@ class LZ77Compressor:
                 output.append(literal)
             else:
                 if distance <= 0 or distance > len(output):
-                    raise ValueError(f"Invalid LZ77 distance {distance} at output position {len(output)}")
+                    raise ValueError(
+                        f"Invalid LZ77 distance {distance}"
+                        f"at output position {len(output)}"
+                    )
                 match_pos = len(output) - distance
                 for _ in range(length):
                     output.append(output[match_pos])
                     match_pos += 1
 
         return bytes(output)
-

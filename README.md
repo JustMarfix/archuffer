@@ -21,6 +21,8 @@ python3 main.py archive a1.txt a2.txt my_files -o data.ar
 python3 main.py unarchive data.ar -o result
 ```
 
+По умолчанию утилита показывает прогресс архивирования (в stdout). Отключить это поведение можно флагом `-P/--no-progress`.
+
 Archuffer, помимо исходного кода, также поставляется с исполняемым файлом, скомпилированным
 с помощью [Nuitka](https://github.com/Nuitka/Nuitka) - Py2C компилятора.
 Вы можете скомпилировать проект локально, запустив команду:
