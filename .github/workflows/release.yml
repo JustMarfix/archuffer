@@ -34,7 +34,7 @@ jobs:
           mode: onefile
           clang: ${{ matrix.os != 'windows-latest' }}
           lto: "yes"
-          python-flag: "no_site isolated"
+          python-flag: "no_site,isolated"
 
       - name: Rename artifact for Windows
         if: matrix.os == 'windows-latest'
