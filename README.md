@@ -29,9 +29,8 @@ Archuffer, помимо исходного кода, также поставля
 
 
 ```bash
-$ nuitka \
+nuitka \
   --onefile \
-  --standalone \         
   --lto=yes \
   --python-flag=no_site \
   --python-flag=isolated \

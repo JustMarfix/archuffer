@@ -1,0 +1,71 @@
+name: New release
+
+
+permissions:
+  contents: write
+
+on:
+  release:
+    types: [published]
+
+jobs:
+  build:
+    strategy:
+      matrix:
+        os: [macos-latest, ubuntu-latest, windows-latest]
+
+    runs-on: ${{ matrix.os }}
+
+    steps:
+      - name: Check-out repository
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+          architecture: 'x64'
+
+      - name: Build Executable
+        uses: Nuitka/Nuitka-Action@main
+        with:
+          nuitka-version: main
+          script-name: main.py
+          mode: onefile
+          clang: ${{ matrix.os != 'windows-latest' }}
+          lto: "yes"
+          python-flag: "no_site isolated"
+
+      - name: Rename artifact for Windows
+        if: matrix.os == 'windows-latest'
+        run: mv build/main.exe build/archuffer-win.exe
+
+      - name: Rename artifact for UNIX
+        if: matrix.os != 'windows-latest'
+        run: mv build/main.bin build/archuffer-${{matrix.os}}
+
+      - name: Upload Artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ runner.os }} Build
+          path: build/archuffer*
+          include-hidden-files: true
+  release:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Download all artifacts
+        uses: actions/download-artifact@v4
+        with:
+          path: build
+      - name: Upload artifact and release
+        uses: nanoufo/action-upload-artifacts-and-release-assets@v2
+        with:
+          path: |
+            build/**/archuffer*
+          upload-release-files: true
+          release-upload-url: ${{ github.event.release.upload_url }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
