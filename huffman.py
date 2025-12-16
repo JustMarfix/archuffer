@@ -187,7 +187,7 @@ class CanonicalHuffman:
     def load_metadata(self, data: bytes):
         """Load code lengths from serialized metadata and regenerate codes.
 
-        :param data: Serialized metadata produced by :meth:`save_metadata`.
+        :param data: Serialized metadata produced by ``save_metadata``.
         :type data: bytes
         :returns: Number of bytes consumed from ``data``
         while reading metadata.
