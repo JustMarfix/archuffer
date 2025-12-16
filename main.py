@@ -173,6 +173,7 @@ def _fmt_pct(done: int, total: int) -> str:
     pct = 100.0 * (done / float(total))
     return f"{pct:6.2f}%"
 
+
 def _fmt_bytes(n: int) -> str:
     """Format a byte count into a human-readable string.
 
@@ -186,6 +187,7 @@ def _fmt_bytes(n: int) -> str:
             return f"{n:.2f} {unit}B"
         n /= 1024
     return f"{n:.2f} PiB"
+
 
 class PerFileProgress:
     """Callable progress reporter to avoid nested callback functions.
@@ -205,7 +207,8 @@ class PerFileProgress:
 
         :param label: Action label (e.g., ``"Archiving"`` or ``"Extracting"``).
         :type label: str
-        :param arc_path: Path to display for the current file/dir inside archive.
+        :param arc_path: Path to display for the current file/dir
+        inside archive.
         :type arc_path: str
         :param overall_base: Overall bytes completed before this file starts.
         :type overall_base: int
