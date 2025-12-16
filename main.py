@@ -285,7 +285,8 @@ def create_archive(
     try:
         entries = _iter_entries(targets)
     except FileNotFoundError as e:
-        print('[!] You selected a file or directory that does not exist:', str(e).split(' ', maxsplit=3)[3])
+        print('[!] You selected a file or directory that does not exist:',
+              str(e).split(' ', maxsplit=3)[3])
         return
     file_entries = [e for e in entries if not e[2]]
     total_bytes = sum(os.path.getsize(e[1]) for e in file_entries)
