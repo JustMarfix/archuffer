@@ -6,7 +6,7 @@ class LZ77Compressor:
     """Fast LZ77 compression with hash-based matching.
 
     :ivar MIN_MATCH: Minimum match length
-    eligible for a (distance,length) token.
+        eligible for a (distance,length) token.
     :type MIN_MATCH: int
     :ivar MAX_MATCH: Maximum match length considered.
     :type MAX_MATCH: int
@@ -114,11 +114,12 @@ class LZ77Compressor:
         :param data: Uncompressed input bytes.
         :type data: bytes
         :param on_progress: Optional callback ``on_progress(pos, total)``
-        invoked periodically with the current processed position
-        and total input size.
+            invoked periodically with the current processed position
+            and total input size.
         :type on_progress: Optional[Callable[[int, int], None]]
         :returns: A pair ``(tokens, frequencies)`` where ``tokens`` is a list
-        of triples and ``frequencies`` is a Counter used for Huffman coding.
+            of triples and ``frequencies`` is
+            a Counter used for Huffman coding.
         :rtype: Tuple[List[Tuple[int, int, int]], Counter]
         """
         self.hash_table = defaultdict(list)

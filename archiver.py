@@ -43,7 +43,7 @@ class Archiver:
                             ``0..len(data)``.
         :type on_progress: Optional[Callable[[int, int], None]]
         :returns: Compressed byte stream.
-        For empty input returns header with size 0.
+            For empty input returns header with size 0.
         :rtype: bytes
         """
         if not data:
@@ -95,9 +95,9 @@ class Archiver:
         :returns: Original uncompressed bytes.
         :rtype: bytes
         :raises ValueError: If the version is unsupported or
-        if an invalid Huffman code is encountered.
+            if an invalid Huffman code is encountered.
         :raises EOFError: If the input data ends unexpectedly while
-        reading bits.
+            reading bits.
         """
         reader = BitReader(data)
 

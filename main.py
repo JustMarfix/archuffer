@@ -7,8 +7,8 @@ import sys
 from typing import List, Tuple
 from archiver import Archiver
 
-MAGIC = b"ARH1"
-VERSION = 2
+MAGIC = b"ARH1"  #: Archuffer magic number
+VERSION = 2  #: Current archuffer version
 
 
 def get_parser():
@@ -194,10 +194,14 @@ class PerFileProgress:
 
     Renders a single-line progress with per-file and overall percentages.
 
-    :param label: Action label (e.g., "Archiving" or "Extracting").
-    :param arc_path: Path displayed for the current archive entry.
-    :param overall_base: Overall bytes already completed before this file.
-    :param overall_total: Total bytes across all files for the operation.
+    :ivar label: Action label (e.g., "Archiving" or "Extracting").
+    :type label: str
+    :ivar arc_path: Path displayed for the current archive entry.
+    :type arc_path: str
+    :ivar overall_base: Overall bytes already completed before this file.
+    :type overall_base: int
+    :ivar overall_total: Total bytes across all files for the operation.
+    :type overall_total: int
     """
 
     def __init__(
@@ -208,7 +212,7 @@ class PerFileProgress:
         :param label: Action label (e.g., ``"Archiving"`` or ``"Extracting"``).
         :type label: str
         :param arc_path: Path to display for the current file/dir
-        inside archive.
+            inside archive.
         :type arc_path: str
         :param overall_base: Overall bytes completed before this file starts.
         :type overall_base: int
@@ -257,28 +261,28 @@ def create_archive(
     - Version: 1 byte
     - Entry count: uint32
     For each entry:
-      - Path length: uint32
-      - Path (utf-8 bytes)
-      - Type: uint8 (0=file, 1=dir)
-      - Metadata (since container VERSION >= 2):
-          - mode: uint32 (POSIX permission bits, see stat.S_IMODE)
-          - uid: uint32 (0xFFFFFFFF if unknown)
-          - gid: uint32 (0xFFFFFFFF if unknown)
-      - If file:
-          - Compressed size: uint32
-          - Compressed data bytes (produced by Archiver.compress)
+    - Path length: uint32
+    - Path (utf-8 bytes)
+    - Type: uint8 (0=file, 1=dir)
+    - Metadata (since container VERSION >= 2):
+    - - mode: uint32 (POSIX permission bits, see stat.S_IMODE)
+    - - uid: uint32 (0xFFFFFFFF if unknown)
+    - - gid: uint32 (0xFFFFFFFF if unknown)
+    - If file:
+    - - Compressed size: uint32
+    - - Compressed data bytes (produced by Archiver.compress)
 
-    :param hide_progress: Whether to show per-file and overall progress.
-    :type hide_progress: bool
-    :param targets: Filesystem targets to include
-    (each file/dir is added recursively).
-    :type targets: List[str]
-    :param output_path: Destination archive file path.
-    :type output_path: str
-    :returns: None
-    :rtype: None
-    :raises FileNotFoundError: If any target does not exist.
-    """
+   :param hide_progress: Whether to show per-file and overall progress.
+   :type hide_progress: bool
+   :param targets: Filesystem targets to include
+        (each file/dir is added recursively).
+   :type targets: List[str]
+   :param output_path: Destination archive file path.
+   :type output_path: str
+   :returns: None
+   :rtype: None
+   :raises FileNotFoundError: If any target does not exist.
+   """
     entries = _iter_entries(targets)
     file_entries = [e for e in entries if not e[2]]
     total_bytes = sum(os.path.getsize(e[1]) for e in file_entries)
@@ -344,7 +348,7 @@ def extract_archive(
     :returns: None
     :rtype: None
     :raises ValueError: If the archive header is invalid
-    or uses an unsupported version.
+        or uses an unsupported version.
     """
     dest_dir = os.path.abspath(dest_dir)
     os.makedirs(dest_dir, exist_ok=True)
