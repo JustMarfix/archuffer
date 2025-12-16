@@ -147,16 +147,45 @@ def _safe_join(base: str, arc_path: str) -> str:
 
 
 def _print_progress(line: str) -> None:
+    """Render and flush a single progress line in-place (carriage return).
+
+    :param line: The textual progress line to display.
+    :type line: str
+    :returns: None
+    :rtype: None
+    """
     sys.stdout.write("\r" + line)
     sys.stdout.flush()
 
 
 def _fmt_pct(done: int, total: int) -> str:
+    """Format a completion percentage string like ``12.34%``.
+
+    :param done: Units completed.
+    :type done: int
+    :param total: Total units to complete.
+    :type total: int
+    :returns: Percentage.
+    :rtype: str
+    """
     if total <= 0:
         return "0%"
     pct = 100.0 * (done / float(total))
     return f"{pct:6.2f}%"
 
+def _fmt_bytes(n: int) -> str:
+    """Format a byte count into a human-readable string.
+
+    :param n: Number of bytes.
+    :type n: int
+    :returns: Human-readable string.
+    :rtype: str
+    """
+    for unit in ['', 'Ki', 'Mi', 'Gi', 'Ti']:
+        if abs(n) < 1024:
+            return f"{n:.2f} {unit}B"
+        n /= 1024
+    return f"{n:.2f} PiB"
 
 class PerFileProgress:
     """Callable progress reporter to avoid nested callback functions.
@@ -172,6 +201,19 @@ class PerFileProgress:
     def __init__(
         self, label: str, arc_path: str, overall_base: int, overall_total: int
     ) -> None:
+        """Initialize progress reporter for a single archive entry.
+
+        :param label: Action label (e.g., ``"Archiving"`` or ``"Extracting"``).
+        :type label: str
+        :param arc_path: Path to display for the current file/dir inside archive.
+        :type arc_path: str
+        :param overall_base: Overall bytes completed before this file starts.
+        :type overall_base: int
+        :param overall_total: Total bytes across all files for the operation.
+        :type overall_total: int
+        :returns: None
+        :rtype: None
+        """
         self.label = label
         self.arc_path = arc_path
         self.overall_base = int(overall_base)
@@ -179,6 +221,15 @@ class PerFileProgress:
         self._last_reported = -1
 
     def __call__(self, done: int, total: int) -> None:
+        """Update the progress display for the current file.
+
+        :param done: Bytes processed for the current file.
+        :type done: int
+        :param total: Total bytes for the current file.
+        :type total: int
+        :returns: None
+        :rtype: None
+        """
         if total <= 0:
             return
         percent_bucket = int((done * 100) / total)
@@ -229,6 +280,7 @@ def create_archive(
     file_entries = [e for e in entries if not e[2]]
     total_bytes = sum(os.path.getsize(e[1]) for e in file_entries)
     overall_done = 0
+    total_compressed_bytes = 0
     with open(output_path, "wb") as out:
         out.write(MAGIC)
         out.write(struct.pack("<B", VERSION))
@@ -264,11 +316,15 @@ def create_archive(
                     _print_progress(line)
                 else:
                     comp = Archiver().compress(data)
+                total_compressed_bytes += len(comp)
                 out.write(struct.pack("<I", len(comp)))
                 out.write(comp)
         if not hide_progress:
             sys.stdout.write("\n")
             sys.stdout.flush()
+        print("Size before compression: ", _fmt_bytes(total_bytes))
+        print("Size after compression: ", _fmt_bytes(total_compressed_bytes))
+        print(f"Compression ratio: {total_bytes / total_compressed_bytes:.2f}")
 
 
 def extract_archive(
