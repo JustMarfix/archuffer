@@ -281,9 +281,12 @@ def create_archive(
    :type output_path: str
    :returns: None
    :rtype: None
-   :raises FileNotFoundError: If any target does not exist.
    """
-    entries = _iter_entries(targets)
+    try:
+        entries = _iter_entries(targets)
+    except FileNotFoundError as e:
+        print('[!] You selected a file or directory that does not exist:', str(e).split(' ', maxsplit=3)[3])
+        return
     file_entries = [e for e in entries if not e[2]]
     total_bytes = sum(os.path.getsize(e[1]) for e in file_entries)
     overall_done = 0
@@ -352,7 +355,12 @@ def extract_archive(
     """
     dest_dir = os.path.abspath(dest_dir)
     os.makedirs(dest_dir, exist_ok=True)
-    with open(archive_path, "rb") as f:
+    try:
+        archive_fd = open(archive_path, "rb")
+    except FileNotFoundError:
+        print(f"[!] Archive file not found: {archive_path}")
+        return
+    with archive_fd as f:
         magic = f.read(4)
         if magic != MAGIC:
             raise ValueError("Invalid archive format (bad magic)")
