@@ -1,0 +1,726 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+          "DTD/xhtml1-strict.dtd">
+<html>
+  
+
+  <head>
+    
+    <title>main</title>
+    <meta name="generator" content="pydoctor 25.10.1"> 
+        
+    </meta>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1 maximum-scale=1" />
+    <link rel="stylesheet" type="text/css" href="bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="apidocs.css" />
+    <link rel="stylesheet" type="text/css" href="extra.css" />
+    
+</head>
+
+  <body>
+
+    
+
+    <nav class="navbar navbar-default mainnavbar">
+      
+  
+  <div class="container-fluid">
+
+
+    <div class="navbar-header">
+      
+      <div class="navlinks">
+        <span class="navbar-brand">
+          archiver/lz77/huffman/bitops/main <a href="index.html">API Documentation</a>
+        </span>
+
+        <a href="moduleIndex.html">
+          Modules
+        </a>
+
+        <a href="classIndex.html">
+          Classes
+        </a>
+
+        <a href="nameIndex.html">
+          Names
+        </a>
+
+        <div id="search-box-container">
+          <div class="input-group">
+            <input id="search-box" type="search" name="search-query" placeholder="Search..." aria-label="Search" minlength="2" class="form-control" autocomplete="off" />
+            
+            <span class="input-group-btn">
+              <a style="display: none;" class="btn btn-default" id="search-clear-button" title="Clear" onclick="clearSearch()"><img src="fonts/x-circle.svg" alt="Clear" /></a>
+              <a class="btn btn-default" id="apidocs-help-button" title="Help" href="apidocs-help.html"><img src="fonts/info.svg" alt="Help" /></a>
+            </span>
+          </div>
+        </div>
+
+      </div>
+
+      <div id="search-results-container" style="display: none;">
+        
+        <div id="search-buttons">
+          <span class="label label-default" id="search-docstrings-button">
+          <label class="checkbox-inline">
+            <input type="checkbox" id="toggle-search-in-docstrings-checkbox" value="false" onclick="toggleSearchInDocstrings()">
+              search in docstrings
+            </input>
+          </label>
+          </span>
+          
+        </div>
+        
+        <noscript>
+            <h1>Cannot search: JavaScript is not supported/enabled in your browser.</h1>
+        </noscript>
+
+        <div id="search-status"> </div>
+
+        <div class="warning" id="search-warn-box" style="display: none;">
+          <p class="rst-last"><span id="search-warn"></span></p>
+        </div>
+
+        <table id="search-results">
+          <!-- Filled dynamically by JS -->
+        </table>
+        
+        <div style="margin-top: 10px;">
+          <p>For more information on the search, visit the <a href="apidocs-help.html#rst-search">help page</a>.</p>
+        </div>
+      </div>
+
+    </div>
+
+
+  </div>
+</nav>
+    
+    <div class="container-fluid">
+
+      <!-- Side navigation -->
+      <div class="sidebarcontainer" style="display: none;">
+        
+        <div class="sidebar"><nav class="sidebar">
+  
+
+  <div>
+
+      <div class="thingTitle">
+        <span>Module</span>
+        <code class="thisobject"><a href="main.html" class="internal-link" title="This module">main</a></code> 
+      </div>
+      
+      <div>
+        
+
+        
+         
+
+        <div class="childrenKindTitle">Classes</div>
+        <ul>
+    
+    <li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="main.PerFileProgress.html" class="internal-link" title="main.PerFileProgress"><wbr></wbr>Per<wbr></wbr>File<wbr></wbr>Progress</a></code>
+            </div>
+        
+
+    </li>
+</ul>
+
+        <div class="childrenKindTitle">Functions</div>
+        <ul>
+    
+    <li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#create_archive" class="internal-link" title="main.create_archive">create<wbr></wbr>_archive</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#extract_archive" class="internal-link" title="main.extract_archive">extract<wbr></wbr>_archive</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#get_parser" class="internal-link" title="main.get_parser">get<wbr></wbr>_parser</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#main" class="internal-link" title="main.main">main</a></code>
+            </div>
+        
+
+    </li><li class="private">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#_fmt_bytes" class="internal-link" title="main._fmt_bytes">_fmt<wbr></wbr>_bytes</a></code>
+            </div>
+        
+
+    </li><li class="private">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#_fmt_pct" class="internal-link" title="main._fmt_pct">_fmt<wbr></wbr>_pct</a></code>
+            </div>
+        
+
+    </li><li class="private">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#_iter_entries" class="internal-link" title="main._iter_entries">_iter<wbr></wbr>_entries</a></code>
+            </div>
+        
+
+    </li><li class="private">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#_normalize_arc_path" class="internal-link" title="main._normalize_arc_path">_normalize<wbr></wbr>_arc<wbr></wbr>_path</a></code>
+            </div>
+        
+
+    </li><li class="private">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#_print_progress" class="internal-link" title="main._print_progress">_print<wbr></wbr>_progress</a></code>
+            </div>
+        
+
+    </li><li class="private">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#_safe_join" class="internal-link" title="main._safe_join">_safe<wbr></wbr>_join</a></code>
+            </div>
+        
+
+    </li>
+</ul> 
+
+        
+         
+
+        <div class="childrenKindTitle">Variables</div>
+        <ul>
+    
+    <li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#MAGIC" class="internal-link" title="main.MAGIC">MAGIC</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#VERSION" class="internal-link" title="main.VERSION">VERSION</a></code>
+            </div>
+        
+
+    </li>
+</ul> 
+
+        
+         
+        
+      </div>
+  </div>
+
+</nav>
+        </div>
+        <div id="collapse-sidebar">
+          <a class="btn btn-link" onclick="toggleSideBarCollapse()" title="Toggle Sidebar Collapse">
+          </a>
+        </div> 
+        <script src="sidebartoggle.js" type="text/javascript"></script>
+       
+      </div>
+
+      <main class="">
+        
+
+        
+
+        <div class="page-header">
+          <h1 class="module"><code><code><a href="main.html" class="internal-link">main</a></code></code></h1>
+          <div id="show-private">
+            <button class="btn btn-link" onclick="togglePrivate()">Toggle Private API</button>
+          </div>
+        </div>
+
+        <div class="categoryHeader">
+          module documentation
+        </div>
+
+        <div class="extrasDocstring">
+          
+        </div>
+
+        <div class="moduleDocstring">
+          <div><p class="undocumented">Undocumented</p></div>
+        </div>
+
+        <div id="split-tables">
+          <table class="children sortable" id="id11">
+  
+  
+  <tr class="class">
+    
+    <td>Class</td>
+    <td><code><a href="main.PerFileProgress.html" class="internal-link" title="main.PerFileProgress"><wbr></wbr>Per<wbr></wbr>File<wbr></wbr>Progress</a></code></td>
+    <td>Callable progress reporter to avoid nested callback functions.</td>
+  </tr><tr class="function">
+    
+    <td>Function</td>
+    <td><code><a href="#create_archive" class="internal-link" title="main.create_archive">create<wbr></wbr>_archive</a></code></td>
+    <td>Create an archive file from given targets (files and/or directories).</td>
+  </tr><tr class="function">
+    
+    <td>Function</td>
+    <td><code><a href="#extract_archive" class="internal-link" title="main.extract_archive">extract<wbr></wbr>_archive</a></code></td>
+    <td>Extract an archive created by <tt class="rst-docutils rst-literal">create_archive</tt>.</td>
+  </tr><tr class="function">
+    
+    <td>Function</td>
+    <td><code><a href="#get_parser" class="internal-link" title="main.get_parser">get<wbr></wbr>_parser</a></code></td>
+    <td>Create and configure the CLI argument parser.</td>
+  </tr><tr class="function">
+    
+    <td>Function</td>
+    <td><code><a href="#main" class="internal-link" title="main.main">main</a></code></td>
+    <td>Entry point for the CLI tool.</td>
+  </tr><tr class="constant">
+    
+    <td>Constant</td>
+    <td><code><a href="#MAGIC" class="internal-link" title="main.MAGIC">MAGIC</a></code></td>
+    <td>Archuffer magic number</td>
+  </tr><tr class="constant">
+    
+    <td>Constant</td>
+    <td><code><a href="#VERSION" class="internal-link" title="main.VERSION">VERSION</a></code></td>
+    <td>Current archuffer version</td>
+  </tr><tr class="function private">
+    
+    <td>Function</td>
+    <td><code><a href="#_fmt_bytes" class="internal-link" title="main._fmt_bytes">_fmt<wbr></wbr>_bytes</a></code></td>
+    <td>Format a byte count into a human-readable string.</td>
+  </tr><tr class="function private">
+    
+    <td>Function</td>
+    <td><code><a href="#_fmt_pct" class="internal-link" title="main._fmt_pct">_fmt<wbr></wbr>_pct</a></code></td>
+    <td>Format a completion percentage string like <tt class="rst-docutils rst-literal">12.34%</tt>.</td>
+  </tr><tr class="function private">
+    
+    <td>Function</td>
+    <td><code><a href="#_iter_entries" class="internal-link" title="main._iter_entries">_iter<wbr></wbr>_entries</a></code></td>
+    <td>Build a list of entries for files and directories to include in the archive.</td>
+  </tr><tr class="function private">
+    
+    <td>Function</td>
+    <td><code><a href="#_normalize_arc_path" class="internal-link" title="main._normalize_arc_path">_normalize<wbr></wbr>_arc<wbr></wbr>_path</a></code></td>
+    <td>Normalize a filesystem path for storage inside the archive.</td>
+  </tr><tr class="function private">
+    
+    <td>Function</td>
+    <td><code><a href="#_print_progress" class="internal-link" title="main._print_progress">_print<wbr></wbr>_progress</a></code></td>
+    <td>Render and flush a single progress line in-place (carriage return).</td>
+  </tr><tr class="function private">
+    
+    <td>Function</td>
+    <td><code><a href="#_safe_join" class="internal-link" title="main._safe_join">_safe<wbr></wbr>_join</a></code></td>
+    <td>Join an archive-stored path to a base directory safely.</td>
+  </tr>
+</table>
+          
+
+            
+        </div>
+
+        <div id="child-list">
+          <div class="basefunction">
+  
+  
+  <a name="main.create_archive">
+    
+  </a>
+  <a name="create_archive">
+    
+  </a>
+  <div class="functionHeader">
+    
+    
+    <span class="py-keyword">def</span>&#160;<span class="py-defname">create_archive</span><span class="function-signature">(<span class="rst-sig-param">targets: <code>list[<wbr></wbr>str]</code>, </span><span class="rst-sig-param">output_path: <code>str</code>, </span><span class="rst-sig-param">hide_progress: <code>bool</code></span>):</span>
+    
+    <a class="headerLink" href="#create_archive" title="main.create_archive">
+      
+      
+      ¶
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    <div><p>Create an archive file from given targets (files and/or directories).</p>
+<blockquote>
+Archive format (little-endian):
+- Magic: 'ARH1' (4 bytes)
+- Version: 1 byte
+- Entry count: uint32
+For each entry:
+- Path length: uint32
+- Path (utf-8 bytes)
+- Type: uint8 (0=file, 1=dir)
+- Metadata (since container VERSION &gt;= 2):
+- - mode: uint32 (POSIX permission bits, see stat.S_IMODE)
+- - uid: uint32 (0xFFFFFFFF if unknown)
+- - gid: uint32 (0xFFFFFFFF if unknown)
+- If file:
+- - Compressed size: uint32
+- - Compressed data bytes (produced by Archiver.compress)</blockquote>
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">targets:</span>List[str]</td><td class="fieldArgDesc">Filesystem targets to include
+(each file/dir is added recursively).</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">output<wbr></wbr>_path:</span>str</td><td class="fieldArgDesc">Destination archive file path.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">hide<wbr></wbr>_progress:</span>bool</td><td class="fieldArgDesc">Whether to show per-file and overall progress.</td></tr></table><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer">None</td><td class="fieldArgDesc">None</td></tr></table><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Raises</td></tr><tr><td class="fieldArgContainer"><code>FileNotFoundError</code></td><td>If any target does not exist.</td></tr></table></div>
+  </div>
+</div><div class="basefunction">
+  
+  
+  <a name="main.extract_archive">
+    
+  </a>
+  <a name="extract_archive">
+    
+  </a>
+  <div class="functionHeader">
+    
+    
+    <span class="py-keyword">def</span>&#160;<span class="py-defname">extract_archive</span><span class="function-signature">(<span class="rst-sig-param">archive_path: <code>str</code>, </span><span class="rst-sig-param">dest_dir: <code>str</code>, </span><span class="rst-sig-param">hide_progress: <code>bool</code></span>):</span>
+    
+    <a class="headerLink" href="#extract_archive" title="main.extract_archive">
+      
+      
+      ¶
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    <div><p>Extract an archive created by <tt class="rst-docutils rst-literal">create_archive</tt>.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">archive<wbr></wbr>_path:</span>str</td><td class="fieldArgDesc">Path to the archive file to extract.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">dest<wbr></wbr>_dir:</span>str</td><td class="fieldArgDesc">Destination directory.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">hide<wbr></wbr>_progress:</span>bool</td><td class="fieldArgDesc">Whether to show per-file and overall progress.</td></tr></table><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer">None</td><td class="fieldArgDesc">None</td></tr></table><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Raises</td></tr><tr><td class="fieldArgContainer"><code>ValueError</code></td><td>If the archive header is invalid
+or uses an unsupported version.</td></tr></table></div>
+  </div>
+</div><div class="basefunction">
+  
+  
+  <a name="main.get_parser">
+    
+  </a>
+  <a name="get_parser">
+    
+  </a>
+  <div class="functionHeader">
+    
+    
+    <span class="py-keyword">def</span>&#160;<span class="py-defname">get_parser</span><span class="function-signature">():</span>
+    
+    <a class="headerLink" href="#get_parser" title="main.get_parser">
+      
+      
+      ¶
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    <div><p>Create and configure the CLI argument parser.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer">argparse.ArgumentParser</td><td class="fieldArgDesc">Configured argument parser.</td></tr></table></div>
+  </div>
+</div><div class="basefunction">
+  
+  
+  <a name="main.main">
+    
+  </a>
+  <a name="main">
+    
+  </a>
+  <div class="functionHeader">
+    
+    
+    <span class="py-keyword">def</span>&#160;<span class="py-defname">main</span><span class="function-signature">():</span>
+    
+    <a class="headerLink" href="#main" title="main.main">
+      
+      
+      ¶
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    <div><p>Entry point for the CLI tool.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer">None</td><td class="fieldArgDesc">None</td></tr></table></div>
+  </div>
+</div><div class="baseconstant">
+  
+  
+  <a name="main.MAGIC">
+    
+  </a>
+  <a name="MAGIC">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">MAGIC</span>: <code>bytes</code> =
+    
+    <a class="headerLink" href="#MAGIC" title="main.MAGIC">
+      
+      
+      ¶
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div><p>Archuffer magic number</p></div>
+    <table class="valueTable"><tr class="fieldStart"><td class="fieldName">Value</td></tr><tr><td><pre class="constant-value"><code>b<span class="rst-variable-quote">'</span><span class="rst-variable-string">ARH1</span><span class="rst-variable-quote">'</span></code></pre></td></tr></table>
+  </div>
+</div><div class="baseconstant">
+  
+  
+  <a name="main.VERSION">
+    
+  </a>
+  <a name="VERSION">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">VERSION</span>: <code>int</code> =
+    
+    <a class="headerLink" href="#VERSION" title="main.VERSION">
+      
+      
+      ¶
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div><p>Current archuffer version</p></div>
+    <table class="valueTable"><tr class="fieldStart"><td class="fieldName">Value</td></tr><tr><td><pre class="constant-value"><code>2</code></pre></td></tr></table>
+  </div>
+</div><div class="basefunction private">
+  
+  
+  <a name="main._fmt_bytes">
+    
+  </a>
+  <a name="_fmt_bytes">
+    
+  </a>
+  <div class="functionHeader">
+    
+    
+    <span class="py-keyword">def</span>&#160;<span class="py-defname">_fmt_bytes</span><span class="function-signature">(<span class="rst-sig-param">n: <code>int</code></span>) -&gt; <code>str</code>:</span>
+    
+    <a class="headerLink" href="#_fmt_bytes" title="main._fmt_bytes">
+      
+      
+      ¶
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    <div><p>Format a byte count into a human-readable string.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">n:</span>int</td><td class="fieldArgDesc">Number of bytes.</td></tr></table><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer">str</td><td class="fieldArgDesc">Human-readable string.</td></tr></table></div>
+  </div>
+</div><div class="basefunction private">
+  
+  
+  <a name="main._fmt_pct">
+    
+  </a>
+  <a name="_fmt_pct">
+    
+  </a>
+  <div class="functionHeader">
+    
+    
+    <span class="py-keyword">def</span>&#160;<span class="py-defname">_fmt_pct</span><span class="function-signature">(<span class="rst-sig-param">done: <code>int</code>, </span><span class="rst-sig-param">total: <code>int</code></span>) -&gt; <code>str</code>:</span>
+    
+    <a class="headerLink" href="#_fmt_pct" title="main._fmt_pct">
+      
+      
+      ¶
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    <div><p>Format a completion percentage string like <tt class="rst-docutils rst-literal">12.34%</tt>.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">done:</span>int</td><td class="fieldArgDesc">Units completed.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">total:</span>int</td><td class="fieldArgDesc">Total units to complete.</td></tr></table><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer">str</td><td class="fieldArgDesc">Percentage.</td></tr></table></div>
+  </div>
+</div><div class="basefunction private">
+  
+  
+  <a name="main._iter_entries">
+    
+  </a>
+  <a name="_iter_entries">
+    
+  </a>
+  <div class="functionHeader">
+    
+    
+    <span class="py-keyword">def</span>&#160;<span class="py-defname">_iter_entries</span><span class="function-signature">(<span class="rst-sig-param">targets: <code>list[<wbr></wbr>str]</code></span>) -&gt; <code>list[<wbr></wbr>tuple[<wbr></wbr>str, <wbr></wbr>str, <wbr></wbr>bool]]</code>:</span>
+    
+    <a class="headerLink" href="#_iter_entries" title="main._iter_entries">
+      
+      
+      ¶
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    <div><p>Build a list of entries for files and directories
+to include in the archive.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">targets:</span>List[str]</td><td class="fieldArgDesc">One or more filesystem paths (files or directories).</td></tr></table><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer">List[Tuple[str, str, bool]]</td><td class="fieldArgDesc">List of entries to be archived.</td></tr></table><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Raises</td></tr><tr><td class="fieldArgContainer"><code>FileNotFoundError</code></td><td>If any of the targets does not exist.</td></tr></table></div>
+  </div>
+</div><div class="basefunction private">
+  
+  
+  <a name="main._normalize_arc_path">
+    
+  </a>
+  <a name="_normalize_arc_path">
+    
+  </a>
+  <div class="functionHeader">
+    
+    
+    <span class="py-keyword">def</span>&#160;<span class="py-defname">_normalize_arc_path</span><span class="function-signature">(<span class="rst-sig-param">path: <code>str</code></span>) -&gt; <code>str</code>:</span>
+    
+    <a class="headerLink" href="#_normalize_arc_path" title="main._normalize_arc_path">
+      
+      
+      ¶
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    <div><p>Normalize a filesystem path for storage inside the archive.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">path:</span>str</td><td class="fieldArgDesc">Filesystem path.</td></tr></table><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer">str</td><td class="fieldArgDesc">Normalized archive path.</td></tr></table></div>
+  </div>
+</div><div class="basefunction private">
+  
+  
+  <a name="main._print_progress">
+    
+  </a>
+  <a name="_print_progress">
+    
+  </a>
+  <div class="functionHeader">
+    
+    
+    <span class="py-keyword">def</span>&#160;<span class="py-defname">_print_progress</span><span class="function-signature">(<span class="rst-sig-param">line: <code>str</code></span>):</span>
+    
+    <a class="headerLink" href="#_print_progress" title="main._print_progress">
+      
+      
+      ¶
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    <div><p>Render and flush a single progress line in-place (carriage return).</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">line:</span>str</td><td class="fieldArgDesc">The textual progress line to display.</td></tr></table><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer">None</td><td class="fieldArgDesc">None</td></tr></table></div>
+  </div>
+</div><div class="basefunction private">
+  
+  
+  <a name="main._safe_join">
+    
+  </a>
+  <a name="_safe_join">
+    
+  </a>
+  <div class="functionHeader">
+    
+    
+    <span class="py-keyword">def</span>&#160;<span class="py-defname">_safe_join</span><span class="function-signature">(<span class="rst-sig-param">base: <code>str</code>, </span><span class="rst-sig-param">arc_path: <code>str</code></span>) -&gt; <code>str</code>:</span>
+    
+    <a class="headerLink" href="#_safe_join" title="main._safe_join">
+      
+      
+      ¶
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    <div><p>Join an archive-stored path to a base directory safely.</p>
+<p>Defense against path traversal attacks.</p>
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">base:</span>str</td><td class="fieldArgDesc">Destination base directory.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">arc<wbr></wbr>_path:</span>str</td><td class="fieldArgDesc">Path as stored in the archive (POSIX-style).</td></tr></table><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer">str</td><td class="fieldArgDesc">Absolute, safe path within <tt class="rst-docutils rst-literal">base</tt>.</td></tr></table><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Raises</td></tr><tr><td class="fieldArgContainer"><code>ValueError</code></td><td>If the joined path would escape the base directory.</td></tr></table></div>
+  </div>
+</div>
+        </div>
+      
+      </main>
+    </div>
+
+    <footer class="navbar navbar-default">
+
+  
+  <div class="container-fluid">
+    <a href="index.html">API Documentation</a> for archiver/lz77/huffman/bitops/main,
+  generated by <a href="https://github.com/twisted/pydoctor/">pydoctor</a>
+    25.10.1 at 2025-12-17 00:15:10.
+  </div>
+
+  <!-- Search related scripts needs to be loaded at the end of HTML 
+    parsing not to introduce overhead and display HTML data asap -->
+  <script src="ajax.js" type="text/javascript"></script>
+  <script src="searchlib.js" type="text/javascript"></script>
+  <script src="search.js" type="text/javascript"></script>
+
+</footer>
+  
+    <script src="pydoctor.js" type="text/javascript"></script>
+
+  </body>
+</html>

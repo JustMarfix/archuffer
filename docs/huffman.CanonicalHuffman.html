@@ -1,0 +1,707 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+          "DTD/xhtml1-strict.dtd">
+<html>
+  
+
+  <head>
+    
+    <title>huffman.CanonicalHuffman</title>
+    <meta name="generator" content="pydoctor 25.10.1"> 
+        
+    </meta>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1 maximum-scale=1" />
+    <link rel="stylesheet" type="text/css" href="bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="apidocs.css" />
+    <link rel="stylesheet" type="text/css" href="extra.css" />
+    
+</head>
+
+  <body>
+
+    
+
+    <nav class="navbar navbar-default mainnavbar">
+      
+  
+  <div class="container-fluid">
+
+
+    <div class="navbar-header">
+      
+      <div class="navlinks">
+        <span class="navbar-brand">
+          archiver/lz77/huffman/bitops/main <a href="index.html">API Documentation</a>
+        </span>
+
+        <a href="moduleIndex.html">
+          Modules
+        </a>
+
+        <a href="classIndex.html">
+          Classes
+        </a>
+
+        <a href="nameIndex.html">
+          Names
+        </a>
+
+        <div id="search-box-container">
+          <div class="input-group">
+            <input id="search-box" type="search" name="search-query" placeholder="Search..." aria-label="Search" minlength="2" class="form-control" autocomplete="off" />
+            
+            <span class="input-group-btn">
+              <a style="display: none;" class="btn btn-default" id="search-clear-button" title="Clear" onclick="clearSearch()"><img src="fonts/x-circle.svg" alt="Clear" /></a>
+              <a class="btn btn-default" id="apidocs-help-button" title="Help" href="apidocs-help.html"><img src="fonts/info.svg" alt="Help" /></a>
+            </span>
+          </div>
+        </div>
+
+      </div>
+
+      <div id="search-results-container" style="display: none;">
+        
+        <div id="search-buttons">
+          <span class="label label-default" id="search-docstrings-button">
+          <label class="checkbox-inline">
+            <input type="checkbox" id="toggle-search-in-docstrings-checkbox" value="false" onclick="toggleSearchInDocstrings()">
+              search in docstrings
+            </input>
+          </label>
+          </span>
+          
+        </div>
+        
+        <noscript>
+            <h1>Cannot search: JavaScript is not supported/enabled in your browser.</h1>
+        </noscript>
+
+        <div id="search-status"> </div>
+
+        <div class="warning" id="search-warn-box" style="display: none;">
+          <p class="rst-last"><span id="search-warn"></span></p>
+        </div>
+
+        <table id="search-results">
+          <!-- Filled dynamically by JS -->
+        </table>
+        
+        <div style="margin-top: 10px;">
+          <p>For more information on the search, visit the <a href="apidocs-help.html#rst-search">help page</a>.</p>
+        </div>
+      </div>
+
+    </div>
+
+
+  </div>
+</nav>
+    
+    <div class="container-fluid">
+
+      <!-- Side navigation -->
+      <div class="sidebarcontainer" style="display: none;">
+        
+        <div class="sidebar"><nav class="sidebar">
+  
+
+  <div>
+
+      <div class="thingTitle">
+        <span>Class</span>
+        <code class="thisobject"><a href="huffman.CanonicalHuffman.html" class="internal-link" title="This class"><wbr></wbr>Canonical<wbr></wbr>Huffman</a></code> 
+      </div>
+      
+      <div>
+        
+
+        
+         
+
+        
+        
+
+        <div class="childrenKindTitle">Methods</div>
+        <ul>
+    
+    <li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#__init__" class="internal-link" title="huffman.CanonicalHuffman.__init__">__init__</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#build_from_frequencies" class="internal-link" title="huffman.CanonicalHuffman.build_from_frequencies">build<wbr></wbr>_from<wbr></wbr>_frequencies</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#encode_symbol" class="internal-link" title="huffman.CanonicalHuffman.encode_symbol">encode<wbr></wbr>_symbol</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#load_metadata" class="internal-link" title="huffman.CanonicalHuffman.load_metadata">load<wbr></wbr>_metadata</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#save_metadata" class="internal-link" title="huffman.CanonicalHuffman.save_metadata">save<wbr></wbr>_metadata</a></code>
+            </div>
+        
+
+    </li><li class="private">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#_generate_canonical_codes" class="internal-link" title="huffman.CanonicalHuffman._generate_canonical_codes">_generate<wbr></wbr>_canonical<wbr></wbr>_codes</a></code>
+            </div>
+        
+
+    </li><li class="private">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#_get_code_lengths" class="internal-link" title="huffman.CanonicalHuffman._get_code_lengths">_get<wbr></wbr>_code<wbr></wbr>_lengths</a></code>
+            </div>
+        
+
+    </li>
+</ul> 
+
+        
+         
+
+        <div class="childrenKindTitle">Attributes</div>
+        <ul>
+    
+    <li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#code_lengths" class="internal-link" title="huffman.CanonicalHuffman.code_lengths">code<wbr></wbr>_lengths</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#codes" class="internal-link" title="huffman.CanonicalHuffman.codes">codes</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#decode_table" class="internal-link" title="huffman.CanonicalHuffman.decode_table">decode<wbr></wbr>_table</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#symbols" class="internal-link" title="huffman.CanonicalHuffman.symbols">symbols</a></code>
+            </div>
+        
+
+    </li>
+</ul> 
+
+        
+         
+        
+      </div>
+  </div><div>
+
+      <div class="thingTitle">
+        <span>Module</span>
+        <code><a href="huffman.html" class="internal-link" title="The parent of this class">huffman</a></code> 
+      </div>
+      
+      <div>
+        
+
+        
+         
+
+        <div class="childrenKindTitle">Classes</div>
+        <ul>
+    
+    <li class=" thisobject">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="huffman.CanonicalHuffman.html" class="internal-link" title="huffman.CanonicalHuffman"><wbr></wbr>Canonical<wbr></wbr>Huffman</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="huffman.HuffmanNode.html" class="internal-link" title="huffman.HuffmanNode"><wbr></wbr>Huffman<wbr></wbr>Node</a></code>
+            </div>
+        
+
+    </li>
+</ul>
+
+        
+         
+
+        
+         
+
+        
+         
+
+        
+         
+        
+      </div>
+  </div>
+
+</nav>
+        </div>
+        <div id="collapse-sidebar">
+          <a class="btn btn-link" onclick="toggleSideBarCollapse()" title="Toggle Sidebar Collapse">
+          </a>
+        </div> 
+        <script src="sidebartoggle.js" type="text/javascript"></script>
+       
+      </div>
+
+      <main class="">
+        
+
+        
+
+        <div class="page-header">
+          <h1 class="class"><code><code><a href="huffman.html" class="internal-link">huffman</a></code><wbr></wbr>.<code><a href="huffman.CanonicalHuffman.html" class="internal-link" title="huffman.CanonicalHuffman">CanonicalHuffman</a></code></code></h1>
+          <div id="show-private">
+            <button class="btn btn-link" onclick="togglePrivate()">Toggle Private API</button>
+          </div>
+        </div>
+
+        <div class="categoryHeader">
+          class documentation
+        </div>
+
+        <div class="extrasDocstring">
+          <p class="class-signature"><code><span class="py-keyword">class</span> <span class="py-defname">CanonicalHuffman</span>:</code></p><p>Constructor: <code><a href="#__init__" class="internal-link" title="huffman.CanonicalHuffman.__init__">CanonicalHuffman()</a></code></p><p><a href="classIndex.html#huffman.CanonicalHuffman">View In Hierarchy</a></p>
+        </div>
+
+        <div class="moduleDocstring">
+          <div><p>Canonical Huffman encoder/decoder.</p>
+<p>Maintains code lengths and canonical codes for a set of symbols.</p>
+</div>
+        </div>
+
+        <div id="split-tables">
+          <table class="children sortable" id="id8">
+  
+  
+  <tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#__init__" class="internal-link" title="huffman.CanonicalHuffman.__init__">__init__</a></code></td>
+    <td>Initialize empty canonical Huffman structures.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#build_from_frequencies" class="internal-link" title="huffman.CanonicalHuffman.build_from_frequencies">build<wbr></wbr>_from<wbr></wbr>_frequencies</a></code></td>
+    <td>Build canonical Huffman codes from a symbol frequency table.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#encode_symbol" class="internal-link" title="huffman.CanonicalHuffman.encode_symbol">encode<wbr></wbr>_symbol</a></code></td>
+    <td>Get the canonical Huffman code for a symbol.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#load_metadata" class="internal-link" title="huffman.CanonicalHuffman.load_metadata">load<wbr></wbr>_metadata</a></code></td>
+    <td>Load code lengths from serialized metadata and regenerate codes.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#save_metadata" class="internal-link" title="huffman.CanonicalHuffman.save_metadata">save<wbr></wbr>_metadata</a></code></td>
+    <td>Serialize code lengths for later reconstruction.</td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#code_lengths" class="internal-link" title="huffman.CanonicalHuffman.code_lengths">code<wbr></wbr>_lengths</a></code></td>
+    <td>Mapping from symbol to code length (in bits).</td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#codes" class="internal-link" title="huffman.CanonicalHuffman.codes">codes</a></code></td>
+    <td>Mapping from symbol to a tuple <tt class="rst-docutils rst-literal">(code, length)</tt>.</td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#decode_table" class="internal-link" title="huffman.CanonicalHuffman.decode_table">decode<wbr></wbr>_table</a></code></td>
+    <td>Optional mapping reserved for decoding structures (not all methods use it).</td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#symbols" class="internal-link" title="huffman.CanonicalHuffman.symbols">symbols</a></code></td>
+    <td>Sorted list of symbols with defined codes.</td>
+  </tr><tr class="method private">
+    
+    <td>Method</td>
+    <td><code><a href="#_generate_canonical_codes" class="internal-link" title="huffman.CanonicalHuffman._generate_canonical_codes">_generate<wbr></wbr>_canonical<wbr></wbr>_codes</a></code></td>
+    <td>Generate canonical Huffman codes from <tt class="rst-docutils rst-literal">code_lengths</tt>.</td>
+  </tr><tr class="method private">
+    
+    <td>Method</td>
+    <td><code><a href="#_get_code_lengths" class="internal-link" title="huffman.CanonicalHuffman._get_code_lengths">_get<wbr></wbr>_code<wbr></wbr>_lengths</a></code></td>
+    <td>Populate <tt class="rst-docutils rst-literal">code_lengths</tt> by traversing a Huffman tree.</td>
+  </tr>
+</table>
+          
+
+            
+        </div>
+
+        <div id="child-list">
+          <div class="basemethod">
+  
+  
+  <a name="huffman.CanonicalHuffman.__init__">
+    
+  </a>
+  <a name="__init__">
+    
+  </a>
+  <div class="functionHeader">
+    
+    
+    <span class="py-keyword">def</span>&#160;<span class="py-defname">__init__</span><span class="function-signature">(<span class="rst-sig-param"><span class="rst-undocumented">self</span></span>):</span>
+    
+    <a class="headerLink" href="#__init__" title="huffman.CanonicalHuffman.__init__">
+      
+      
+      ¶
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    <div><p>Initialize empty canonical Huffman structures.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer">None</td><td class="fieldArgDesc">None</td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="huffman.CanonicalHuffman.build_from_frequencies">
+    
+  </a>
+  <a name="build_from_frequencies">
+    
+  </a>
+  <div class="functionHeader">
+    
+    
+    <span class="py-keyword">def</span>&#160;<span class="py-defname">build_from_frequencies</span><span class="function-signature">(<span class="rst-sig-param"><span class="rst-undocumented">self</span>, </span><span class="rst-sig-param">frequencies: <code>dict[<wbr></wbr>int, <wbr></wbr>int]</code></span>):</span>
+    
+    <a class="headerLink" href="#build_from_frequencies" title="huffman.CanonicalHuffman.build_from_frequencies">
+      
+      
+      ¶
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    <div><p>Build canonical Huffman codes from a symbol frequency table.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">frequencies:</span>Dict[int, int]</td><td class="fieldArgDesc">Mapping from symbol to observed frequency.</td></tr></table><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer">None</td><td class="fieldArgDesc">None</td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="huffman.CanonicalHuffman.encode_symbol">
+    
+  </a>
+  <a name="encode_symbol">
+    
+  </a>
+  <div class="functionHeader">
+    
+    
+    <span class="py-keyword">def</span>&#160;<span class="py-defname">encode_symbol</span><span class="function-signature">(<span class="rst-sig-param"><span class="rst-undocumented">self</span>, </span><span class="rst-sig-param">symbol: <code>int</code></span>) -&gt; <code>tuple[<wbr></wbr>int, <wbr></wbr>int]</code>:</span>
+    
+    <a class="headerLink" href="#encode_symbol" title="huffman.CanonicalHuffman.encode_symbol">
+      
+      
+      ¶
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    <div><p>Get the canonical Huffman code for a symbol.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">symbol:</span>int</td><td class="fieldArgDesc">Symbol to encode.</td></tr></table><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer">Tuple[int, int]</td><td class="fieldArgDesc">Tuple <tt class="rst-docutils rst-literal">(code, length)</tt>.
+If <tt class="rst-docutils rst-literal">symbol</tt> is unknown, returns <tt class="rst-docutils rst-literal">(0, 1)</tt>.</td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="huffman.CanonicalHuffman.load_metadata">
+    
+  </a>
+  <a name="load_metadata">
+    
+  </a>
+  <div class="functionHeader">
+    
+    
+    <span class="py-keyword">def</span>&#160;<span class="py-defname">load_metadata</span><span class="function-signature">(<span class="rst-sig-param"><span class="rst-undocumented">self</span>, </span><span class="rst-sig-param">data: <code>bytes</code></span>):</span>
+    
+    <a class="headerLink" href="#load_metadata" title="huffman.CanonicalHuffman.load_metadata">
+      
+      
+      ¶
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    <div><p>Load code lengths from serialized metadata and regenerate codes.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">data:</span>bytes</td><td class="fieldArgDesc">Serialized metadata produced by <tt class="rst-docutils rst-literal">save_metadata</tt>.</td></tr></table><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer">int</td><td class="fieldArgDesc">Number of bytes consumed from <tt class="rst-docutils rst-literal">data</tt>
+while reading metadata.</td></tr></table><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Raises</td></tr><tr><td class="fieldArgContainer"><code>EOFError</code></td><td>If the metadata is truncated.</td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="huffman.CanonicalHuffman.save_metadata">
+    
+  </a>
+  <a name="save_metadata">
+    
+  </a>
+  <div class="functionHeader">
+    
+    
+    <span class="py-keyword">def</span>&#160;<span class="py-defname">save_metadata</span><span class="function-signature">(<span class="rst-sig-param"><span class="rst-undocumented">self</span></span>) -&gt; <code>bytes</code>:</span>
+    
+    <a class="headerLink" href="#save_metadata" title="huffman.CanonicalHuffman.save_metadata">
+      
+      
+      ¶
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    <div><p>Serialize code lengths for later reconstruction.</p>
+<p>The format stores the number of symbols (16 bits), and for each symbol
+its value (9 bits) followed by its code length (5 bits).</p>
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer">bytes</td><td class="fieldArgDesc">Serialized metadata bytes.</td></tr></table></div>
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="huffman.CanonicalHuffman.code_lengths">
+    
+  </a>
+  <a name="code_lengths">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">code_lengths</span>: Dict[int, int] =
+    
+    <a class="headerLink" href="#code_lengths" title="huffman.CanonicalHuffman.code_lengths">
+      
+      
+      ¶
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div><p>Mapping from symbol to code length (in bits).</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="huffman.CanonicalHuffman.codes">
+    
+  </a>
+  <a name="codes">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">codes</span>: Dict[int, Tuple[int, int]] =
+    
+    <a class="headerLink" href="#codes" title="huffman.CanonicalHuffman.codes">
+      
+      
+      ¶
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div><p>Mapping from symbol to a tuple <tt class="rst-docutils rst-literal">(code, length)</tt>.</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="huffman.CanonicalHuffman.decode_table">
+    
+  </a>
+  <a name="decode_table">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">decode_table</span>: Dict[int, int] =
+    
+    <a class="headerLink" href="#decode_table" title="huffman.CanonicalHuffman.decode_table">
+      
+      
+      ¶
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div><p>Optional mapping reserved for
+decoding structures (not all methods use it).</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="huffman.CanonicalHuffman.symbols">
+    
+  </a>
+  <a name="symbols">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">symbols</span>: List[int] =
+    
+    <a class="headerLink" href="#symbols" title="huffman.CanonicalHuffman.symbols">
+      
+      
+      ¶
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div><p>Sorted list of symbols with defined codes.</p></div>
+    
+  </div>
+</div><div class="basemethod private">
+  
+  
+  <a name="huffman.CanonicalHuffman._generate_canonical_codes">
+    
+  </a>
+  <a name="_generate_canonical_codes">
+    
+  </a>
+  <div class="functionHeader">
+    
+    
+    <span class="py-keyword">def</span>&#160;<span class="py-defname">_generate_canonical_codes</span><span class="function-signature">(<span class="rst-sig-param"><span class="rst-undocumented">self</span></span>):</span>
+    
+    <a class="headerLink" href="#_generate_canonical_codes" title="huffman.CanonicalHuffman._generate_canonical_codes">
+      
+      
+      ¶
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    <div><p>Generate canonical Huffman codes from <tt class="rst-docutils rst-literal">code_lengths</tt>.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer">None</td><td class="fieldArgDesc">None</td></tr></table></div>
+  </div>
+</div><div class="basemethod private">
+  
+  
+  <a name="huffman.CanonicalHuffman._get_code_lengths">
+    
+  </a>
+  <a name="_get_code_lengths">
+    
+  </a>
+  <div class="functionHeader">
+    
+    
+    <span class="py-keyword">def</span>&#160;<span class="py-defname">_get_code_lengths</span><span class="function-signature">(<span class="rst-sig-param"><span class="rst-undocumented">self</span>, </span><span class="rst-sig-param">node: <code><a href="huffman.HuffmanNode.html" class="internal-link" title="huffman.HuffmanNode">HuffmanNode</a></code>, </span><span class="rst-sig-param">depth: <code>int</code></span>):</span>
+    
+    <a class="headerLink" href="#_get_code_lengths" title="huffman.CanonicalHuffman._get_code_lengths">
+      
+      
+      ¶
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    <div><p>Populate <tt class="rst-docutils rst-literal">code_lengths</tt> by traversing a Huffman tree.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">node:</span>HuffmanNode</td><td class="fieldArgDesc">Current node in the Huffman tree.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">depth:</span>int</td><td class="fieldArgDesc">Current depth (code length so far).</td></tr></table><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer">None</td><td class="fieldArgDesc">None</td></tr></table></div>
+  </div>
+</div>
+        </div>
+      
+      </main>
+    </div>
+
+    <footer class="navbar navbar-default">
+
+  
+  <div class="container-fluid">
+    <a href="index.html">API Documentation</a> for archiver/lz77/huffman/bitops/main,
+  generated by <a href="https://github.com/twisted/pydoctor/">pydoctor</a>
+    25.10.1 at 2025-12-17 00:15:10.
+  </div>
+
+  <!-- Search related scripts needs to be loaded at the end of HTML 
+    parsing not to introduce overhead and display HTML data asap -->
+  <script src="ajax.js" type="text/javascript"></script>
+  <script src="searchlib.js" type="text/javascript"></script>
+  <script src="search.js" type="text/javascript"></script>
+
+</footer>
+  
+    <script src="pydoctor.js" type="text/javascript"></script>
+
+  </body>
+</html>

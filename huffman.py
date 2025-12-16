@@ -7,7 +7,7 @@ class HuffmanNode:
     """Node for a standard binary Huffman tree.
 
     :ivar symbol: The symbol (e.g., literal byte or length code)
-    stored at a leaf; ``None`` for internal nodes.
+        stored at a leaf; ``None`` for internal nodes.
     :type symbol: int | None
     :ivar freq: Frequency (weight) of the subtree rooted at this node.
     :type freq: int
@@ -21,9 +21,10 @@ class HuffmanNode:
         """Create a Huffman node.
 
         :param symbol: Symbol value for leaf nodes;
-        ``None`` for internal nodes.
+                       ``None`` for internal nodes.
         :type symbol: int | None
-        :param int freq: Frequency (weight) associated with this node.
+        :param freq: Frequency (weight) associated with this node.
+        :type freq: int
         :param left: Left child node, if any.
         :type left: HuffmanNode|None
         :param right: Right child node, if any.
@@ -57,7 +58,7 @@ class CanonicalHuffman:
     :ivar codes: Mapping from symbol to a tuple ``(code, length)``.
     :type codes: Dict[int, Tuple[int, int]]
     :ivar decode_table: Optional mapping reserved for
-    decoding structures (not all methods use it).
+        decoding structures (not all methods use it).
     :type decode_table: Dict[int, int]
     :ivar symbols: Sorted list of symbols with defined codes.
     :type symbols: List[int]
@@ -163,7 +164,7 @@ class CanonicalHuffman:
         :param symbol: Symbol to encode.
         :type symbol: int
         :returns: Tuple ``(code, length)``.
-        If ``symbol`` is unknown, returns ``(0, 1)``.
+                  If ``symbol`` is unknown, returns ``(0, 1)``.
         :rtype: Tuple[int, int]
         """
         return self.codes.get(symbol, (0, 1))
@@ -190,7 +191,7 @@ class CanonicalHuffman:
         :param data: Serialized metadata produced by ``save_metadata``.
         :type data: bytes
         :returns: Number of bytes consumed from ``data``
-        while reading metadata.
+                  while reading metadata.
         :rtype: int
         :raises EOFError: If the metadata is truncated.
         """
